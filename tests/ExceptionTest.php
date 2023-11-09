@@ -2,7 +2,9 @@
 
 namespace Forestry\Log\Test;
 
-use Forestry\Log\Log;
+use Forestry\Log\{DirectoryException, FileException, Log};
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class ExceptionTest
@@ -12,62 +14,41 @@ use Forestry\Log\Log;
  * @package Forestry\Log
  * @subpackage Forestry\Log\Test
  */
-class ExceptionTest extends \PHPUnit_Framework_TestCase
-{
-    /**
-     * @var string
-     */
-    private $testFile = 'forestry-log-test.log';
+class ExceptionTest extends TestCase {
+  private string $testFile = 'forestry-log-test.log';
 
-    /**
-     * Clean possibly previous generated test log file.
-     */
-    public function setUp()
-    {
-        if (file_exists('/tmp/' . $this->testFile)) {
-            unlink('/tmp/' . $this->testFile);
-        }
+  /**
+   * Clean possibly previous generated test log file.
+   */
+  function setUp(): void {
+    if (file_exists(__DIR__ . '/tmp/' . $this->testFile)) {
+      unlink(__DIR__ . '/tmp/' . $this->testFile);
     }
+  }
 
-    /**
-     * @expectedException \Forestry\Log\DirectoryException
-     */
-    public function testThrowsExceptionWhenDirectoryDoesNotExist()
-    {
-        new Log('/tmp/test/' . $this->testFile);
-    }
+  function testThrowsExceptionWhenDirectoryDoesNotExist() {
+    $this->expectException(DirectoryException::class);
+    new Log(__DIR__ . '/tmp/test/' . $this->testFile);
+  }
 
-    /**
-     * @expectedException \Forestry\Log\DirectoryException
-     */
-    public function testThrowsExceptionWhenDirectoryDoesntHaveWritePermissions()
-    {
-        new Log('/root/' . $this->testFile);
-    }
+  function testThrowsExceptionWhenDirectoryDoesntHaveWritePermissions() {
+    $this->expectException(DirectoryException::class);
+    new Log('/root/' . $this->testFile);
+  }
 
-    /**
-     * @expectedException \Forestry\Log\FileException
-     */
-    public function testThrowsExceptionWhenHandleCantBeOpened()
-    {
-        //Suppressing errors only for testing purpose.
-        @new Log('/tmp/.');
-    }
+  function testThrowsExceptionWhenHandleCantBeOpened() {
+    $this->expectException(FileException::class);
+    @new Log(__DIR__ . '/tmp/.');
+  }
 
-    /**
-     * @expectedException \Forestry\Log\InvalidArgumentException
-     */
-    public function testThrowsExceptionOnUndefinedLogLevel()
-    {
-        new Log('/tmp/' . $this->testFile, 100);
-    }
+  function testThrowsExceptionOnUndefinedLogLevel() {
+    $this->expectException(InvalidArgumentException::class);
+    new Log(__DIR__ . '/tmp/' . $this->testFile, 100);
+  }
 
-    /**
-     * @expectedException \Forestry\Log\InvalidArgumentException
-     */
-    public function testLogThrowsExceptionOnUndefinedLogLevel()
-    {
-        $logger = new Log('/tmp/' . $this->testFile);
-        $logger->log(100, 'What level is this?');
-    }
+  function testLogThrowsExceptionOnUndefinedLogLevel() {
+    $this->expectException(InvalidArgumentException::class);
+    $logger = new Log(__DIR__ . '/tmp/' . $this->testFile);
+    $logger->log(100, 'What level is this?');
+  }
 }

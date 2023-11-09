@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Forestry Log library
  *
@@ -18,28 +19,26 @@ namespace Forestry\Log;
  * @package Forestry Log
  * @since 1.0.0
  */
-abstract class LoggerFactory
-{
-    /**
-     * Create a concrete Log instance.
-     *
-     * Creates a Log instance with settings depending on the implementing class.
-     *
-     * @param string $fileName
-     * @return Log
-     */
-    abstract protected function createLogger($fileName);
+abstract class LoggerFactory {
+  /**
+   * Create a concrete Log instance.
+   *
+   * Creates a Log instance with settings depending on the implementing class.
+   *
+   * @param string $fileName
+   * @return Log
+   */
+  abstract protected function createLogger($fileName);
 
-    /**
-     * Create a Log instance.
-     *
-     * Public callable method for the implementing class.
-     *
-     * @param string $fileName
-     * @return Log
-     */
-    public function create($fileName)
-    {
-        return $this->createLogger($fileName);
-    }
+  /**
+   * Create a Log instance.
+   *
+   * Public callable method for the implementing class.
+   *
+   * @param string $fileName
+   * @return Log
+   */
+  public function create($fileName) {
+    return $this->createLogger($fileName);
+  }
 }

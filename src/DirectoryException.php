@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Forestry Log library
  *
@@ -18,6 +19,5 @@ namespace Forestry\Log;
  * @package Forestry Log
  * @since 1.0.0
  */
-class DirectoryException extends \RuntimeException
-{
+class DirectoryException extends \RuntimeException {
 }

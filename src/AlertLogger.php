@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Forestry Log library
  *
@@ -20,13 +21,11 @@ use Psr\Log\LogLevel;
  * @package Forestry Log
  * @since 1.0.0
  */
-class AlertLogger extends LoggerFactory
-{
-    /**
-     * {@inheritdoc}
-     */
-    protected function createLogger($fileName)
-    {
-        return new Log($fileName, LogLevel::ALERT);
-    }
+class AlertLogger extends LoggerFactory {
+  /**
+   * {@inheritdoc}
+   */
+  protected function createLogger($fileName) {
+    return new Log($fileName, LogLevel::ALERT);
+  }
 }
