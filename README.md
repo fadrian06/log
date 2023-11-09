@@ -1,10 +1,8 @@
 # Forestry Log
 
-[![Latest Version](https://img.shields.io/github/release/ForestryCodes/log.svg?style=flat-square)](https://github.com/ForestryCodes/log/releases)
+[![Latest Version](https://img.shields.io/github/release/fadrian06/log.svg?style=flat-square)](https://github.com/fadrian06/log/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/ForestryCodes/log/master.svg?style=flat-square)](https://travis-ci.org/ForestryCodes/log)
-[![Codacy Badge](https://www.codacy.com/project/badge/9be442da34e34e548af5312f844fc0fe)](https://www.codacy.com/public/danielgithub/log)
-[![Total Downloads](https://img.shields.io/packagist/dt/forestry/log.svg?style=flat-square)](https://packagist.org/packages/forestry/log)
+[![Total Downloads](https://img.shields.io/packagist/dt/faslatam/log.svg?style=flat-square)](https://packagist.org/packages/faslatam/log)
 
 Small log file writer with adjustable log level threshold settings.
 
@@ -13,7 +11,7 @@ Small log file writer with adjustable log level threshold settings.
 Via Composer
 
 ``` bash
-$ composer require forestry/log
+$ composer require faslatam/log
 ```
 
 ## Usage
@@ -63,8 +61,8 @@ $logger->log(Psr\Log\LogLevel::DEBUG, 'this is a debug message');
 You can use placeholders in the your message string and fill them using the associative context array. The array keys have to match the placeholders without the curly brackets:
 
 ```php
-$user = array('name' => 'John Doe', 'mail' => 'j.doe@example.org');
-$logger->info('Send mail to {name} ({mail})', $user); //Send mail to John Doe (j.doe@example.org)
+$user = ['name' => 'John Doe', 'mail' => 'j.doe@example.org'];
+$logger->info('Send mail to {name} ({mail})', $user); // Send mail to John Doe (j.doe@example.org)
 ```
 
 ### Change the date format
@@ -72,7 +70,7 @@ $logger->info('Send mail to {name} ({mail})', $user); //Send mail to John Doe (j
 The default date format is `Y-m-d H:i:s`. You can change it by using the `setDateFormat` method:
 
 ```php
-$logger->setDateFormat('r'); //e.g. Thu, 21 Dec 2000 16:01:07 +0200
+$logger->setDateFormat('r'); // e.g. Thu, 21 Dec 2000 16:01:07 +0200
 ```
 
 This method accepts any string which is compatible with PHPs native `date()`.
@@ -82,7 +80,7 @@ This method accepts any string which is compatible with PHPs native `date()`.
 The default format for the log message is `date level message`. To change it, you can re-arrange the placeholders with `setLogFormat`:
 
 ```php
-$logger->setLogFormat('[{level}|{date}] {message}'); //[INFO|2013-04-25 13:37:42] This is an info message
+$logger->setLogFormat('[{level}|{date}] {message}'); // [INF0|2013-04-25 13:37:42] This is an info message
 ```
 
 There are the following placeholder available:
@@ -119,7 +117,7 @@ $logger->setLogThreshold($level);
 ## Testing
 
 ``` bash
-$ phpunit
+$ composer test
 ```
 
 ## Contributing
@@ -129,6 +127,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 ## Credits
 
 - [daniel-melzer](https://github.com/daniel-melzer)
+- [fadrian06](https://github.com/fadrian06)
 - [All Contributors](../../contributors)
 
 ## License

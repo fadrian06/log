@@ -2,6 +2,11 @@
 
 All Notable changes to `log` will be documented in this file.
 
+## 2.0.0 - 2023-11-09
+
+### Changed
+- Updated psr/log implementation to 3.0, added support for PHP 8.
+
 ## 1.0.0 - 2015-05-02
 
 ### Added
